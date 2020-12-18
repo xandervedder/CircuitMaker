@@ -1,0 +1,80 @@
+:root {
+  --main-color: #5f5f5f;
+  --secondary-color: grey;
+  --tertiary-color: lightgrey;
+  --tertiary-color-hovered: white;
+  --tertiary-color-selected: #268ed3;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  background-color: var(--main-color);
+}
+
+.app {
+  width: 100%;
+  height: calc(100% - 25px);
+  padding-top: 25px;
+}
+
+.app__canvasContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.app__canvas {
+  background-color: var(--secondary-color);
+  border-radius: 5px;
+}
+
+.partPicker {
+  display: flex;
+  flex-direction: row;
+  height: 250px;
+  margin: 25px 25px 0 25px;
+  background-color: #3b3b3b;
+  border-radius: 5px;
+}
+
+.partPicker__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  flex-grow: 1;
+}
+
+.partPicker__button {
+  padding: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  border: 5px solid var(--tertiary-color);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+  background-color: var(--tertiary-color)
+}
+
+.partPicker__button:hover {
+  background-color: var(--tertiary-color-hovered);
+  border-color: var(--tertiary-color-hovered);
+}
+
+.partPicker__button:disabled {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  cursor: not-allowed;
+  transition: none;
+}
+
+.partPicker__button--selected {
+  border: 5px solid var(--tertiary-color-selected);
+}
+
+.partPicker__button--selected:hover {
+  border-color: var(--tertiary-color-selected);
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CircuitMaker v0.0</title>
+  <link rel="stylesheet" href="src/css/main.css">
+</head>
+<body>
+  <div class="app">
+    <div class="app__canvasContainer">
+      <canvas id="canvas" class="app__canvas"></canvas>
+    </div>
+    <div class="partPicker">
+      <div class="partPicker__item">
+        <button id="outputNode" class="partPicker__button">Output Node</button>
+      </div>
+      <div class="partPicker__item">
+        <button id="inputOutputNode" class="partPicker__button">Input/Output Node</button>
+      </div>
+      <div class="partPicker__item">
+        <button id="inputNode" class="partPicker__button">Input Node</button>
+      </div>
+      <div class="partPicker__item">
+        <button id="clearCanvas" class="partPicker__button">Clear (temp)</button>
+      </div>
+    </div>
+  </div>
+  <script type="module" type="javascript" src="build/core.js"></script>
+</body>
+</html>
