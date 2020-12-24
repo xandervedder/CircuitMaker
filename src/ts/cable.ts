@@ -1,9 +1,11 @@
 import { Circuit } from "./circuit.js";
 import { Drawable } from "./gfx/drawable.js";
-import { BaseNode } from "./node/base-node.js";
+import { BaseNode } from "./gfx/node/base-node.js";
 import { Position } from "./type/types.js";
 import { translate } from "./util/util.js";
+import { CableLogic } from "./logic/cable/cable.js";
 
+// Will be reworked in #3
 export class CableHandler {
   private _circuit: Circuit;
   private _ctx: CanvasRenderingContext2D;
@@ -55,7 +57,7 @@ export class CableHandler {
     this._mouseMovePosition = event;
     if (this._mouseDown) this._dragging = true;
     else this._dragging = false;
-  }
+  }   
 
   private _handleMouseUp(event: Position): void {
     this._mouseUpPosition = event;
@@ -68,10 +70,12 @@ export class CableHandler {
         this._dragging &&
         drawable instanceof BaseNode
       ) {
+        if (drawable.logic.occupied)
+          return;
+        
         this._rightNode = drawable;
         let cable = new Cable(this._leftNode, this._rightNode);
-        this._leftNode.cable = cable;
-        // this._leftNode.recieve(!this._leftNode.signal);
+        this._leftNode.logic.cable = cable;
         this._cables.push(cable);
         break;
       }
@@ -82,12 +86,6 @@ export class CableHandler {
   }
 
   draw(): void {
-    this._cables.forEach((cable) => {
-      const left = cable.left.position;
-      const right = cable.right.position;
-      this._drawCable(left.x, left.y, right.x, right.y);
-    });
-
     if (!this._dragging) return;
 
     this._drawCable(
@@ -107,31 +105,47 @@ export class CableHandler {
   }
 }
 
-export class Cable {
-  private _leftNode: BaseNode;
-  private _rightNode: BaseNode;
-  private _signal: boolean;
+export class Cable extends Drawable {
+  private _cableLogic: CableLogic;
 
-  constructor(leftNode: BaseNode, rightNode: BaseNode) {
-    this._leftNode = leftNode;
-    this._rightNode = rightNode;
-    this._signal = false;
+  constructor(
+    private _leftNode: BaseNode,
+    private _rightNode: BaseNode,
+  ) {
+    super();
+
+    this._cableLogic = new CableLogic(false, _leftNode.logic, _rightNode.logic);
   }
 
-  get left(): BaseNode {
+  public get left(): BaseNode {
     return this._leftNode;
   }
 
-  get right(): BaseNode {
+  public get right(): BaseNode {
     return this._rightNode;
   }
 
-  get signal(): boolean {
-    return this._signal;
+  public get logic(): CableLogic {
+    return this._cableLogic;
   }
 
-  sendPulse(signal: boolean): void {
-    this._signal = signal;
-    this._rightNode?.recieve(signal);
+  public sendPulse(signal: boolean): void {
+    this._cableLogic.sendPulse(signal);
+  }
+
+  public draw(ctx: CanvasRenderingContext2D): void {
+    ctx.beginPath();
+    ctx.lineWidth = 3;
+    ctx.moveTo(this.left.position.x, this.left.position.y);
+    ctx.lineTo(this.right.position.x, this.right.position.y);
+    ctx.stroke();
+  }
+
+  public onClick(event: Position): void {
+    // Not yet
+  }
+
+  public pointInArea(x: number, y: number): boolean {
+    return false;
   }
 }
