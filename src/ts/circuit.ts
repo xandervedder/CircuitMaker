@@ -27,7 +27,7 @@ export class Circuit {
   private _setUpListeners() {
     this._canvas.addEventListener("click", (event) => this._handleClick(translate(event)));
 
-    //document.querySelector("#clearCanvas").addEventListener("click", () => (this.drawables = []));
+    document.querySelector("#clearCanvas").addEventListener("click", () => Drawable.clearAll());
 
     window.addEventListener("resize", () => {
       this._canvas.height = window.innerHeight - 350;
