@@ -1,7 +1,7 @@
 import { Circuit } from "./circuit.js";
 import { Drawable } from "./gfx/drawable.js";
-import { BaseNode } from "./node/base-node.js";
-import { create, NodeType } from "./node/node-factory.js";
+import { BaseNode } from "./gfx/node/base-node.js";
+import { create, NodeType } from "./gfx/node/node-factory.js";
 import { Position } from "./type/types.js";
 import { translate } from "./util/util.js";
 
