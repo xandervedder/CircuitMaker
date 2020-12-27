@@ -8,8 +8,10 @@
 </head>
 <body>
   <div class="app">
-    <div class="app__canvasContainer">
-      <canvas id="canvas" class="app__canvas"></canvas>
+    <span id="tooltip" class="app__activeCanvasTooltip">Current layer: Preview</span>
+    <div id="container" class="app__canvasContainer">
+      <canvas id="drawLayer" class="app__canvas app__canvas--background"></canvas>
+      <canvas id="previewLayer" class="app__canvas"></canvas>
     </div>
     <div class="partPicker">
       <div class="partPicker__item">
@@ -22,7 +24,7 @@
         <button id="inputNode" class="partPicker__button">Input Node</button>
       </div>
       <div class="partPicker__item">
-        <button id="clearCanvas" class="partPicker__button">Clear (temp)</button>
+        <button id="switchLayer" class="partPicker__button">Switch Layer</button>
       </div>
     </div>
   </div>
