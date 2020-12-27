@@ -1,4 +1,3 @@
-import { Cable } from "../../cable.js";
 import { Drawable } from "../../gfx/drawable.js";
 import { BaseNodeLogic } from "../../logic/node/base-node-logic.js";
 import { Position } from "../../type/types.js";
@@ -43,6 +42,13 @@ export abstract class BaseNode extends Drawable {
     let path = new Path2D();
     path.arc(this._x, this._y, this._radius, 0, 2 * Math.PI);
     return path;
+  }
+
+  public drawableInPoint(position: Position): Drawable {
+    if (this.pointInArea(position.x, position.y)) {
+      return this;
+    }
+    return null;
   }
 
   public pointInArea(x: number, y: number): boolean {

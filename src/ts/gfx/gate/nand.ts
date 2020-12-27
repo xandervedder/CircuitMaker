@@ -8,6 +8,10 @@ export class Nand extends Drawable {
   private _width: number;
   private _qSize: number;
 
+  private _leftNode1: InputOutputNode;
+  private _leftNode2: InputOutputNode;
+  private _rightNode: InputOutputNode;
+
   constructor(private _x: number, private _y: number) {
     super();
 
@@ -19,11 +23,11 @@ export class Nand extends Drawable {
   }
 
   private _setUpNodes(): void {
-    const leftNode1 = new InputOutputNode(this._x, this._y + this._qSize, 20);
-    const leftNode2 = new InputOutputNode(this._x, this._y + this._qSize * 3, 20);
-    const RightNode = new InputOutputNode(this._x + this._width, this._y + this._qSize * 2, 20);
+    this._leftNode1 = new InputOutputNode(this._x, this._y + this._qSize, 20);
+    this._leftNode2 = new InputOutputNode(this._x, this._y + this._qSize * 3, 20);
+    this._rightNode = new InputOutputNode(this._x + this._width, this._y + this._qSize * 2, 20);
     
-    const nandLogic = new NandLogic(leftNode1.logic, leftNode2.logic, RightNode.logic);
+    const nandLogic = new NandLogic(this._leftNode1.logic, this._leftNode2.logic, this._rightNode.logic);
     nandLogic.listen();
   }
 
@@ -31,11 +35,19 @@ export class Nand extends Drawable {
     ctx.fillStyle = "#0f0";
     ctx.rect(this._x, this._y, this._width, this._height);
     ctx.fill();
+
+    this._leftNode1.draw(ctx);
+    this._leftNode2.draw(ctx);
+    this._rightNode.draw(ctx);
+  }
+
+  public drawableInPoint(position: Position): Drawable {
+    return [this._leftNode1, this._leftNode2, this._rightNode].filter(node => node.pointInArea(position.x, position.y))[0];
   }
 
   public onClick(event: Position): void {}
 
   public pointInArea(x: number, y: number): boolean {
-    return false;
+    return [this._leftNode1, this._leftNode2, this._rightNode].filter(node => node.pointInArea(x, y)).length !== 0;
   }
 }

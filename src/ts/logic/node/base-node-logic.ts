@@ -1,4 +1,4 @@
-import { Cable } from "../../cable.js";
+import { CableLogic } from "../cable/cable-logic.js";
 
 export interface Listener {
   onSend?: () => void;
@@ -6,7 +6,7 @@ export interface Listener {
 }
 
 export class BaseNodeLogic {
-  protected _cable?: Cable;
+  protected _cable?: CableLogic;
   protected _listener?: Listener|null;
   protected _signal: boolean;
 
@@ -26,11 +26,11 @@ export class BaseNodeLogic {
     this._signal = !this._signal;
   }
 
-  public set cable(cable: Cable) {
+  public set cable(cable: CableLogic) {
     this._cable = cable;
   }
 
-  public get cable(): Cable {
+  public get cable(): CableLogic {
     return this._cable;
   }
 
