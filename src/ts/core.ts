@@ -1,9 +1,17 @@
-import { Circuit } from "./circuit.js";
-import { Nand } from "./gfx/gate/nand.js";
+import { LayerType, LayerManager } from "./layer/layer-manager.js";
 
-new Nand(250, 250);
-new Nand(250, 550);
-new Nand(750, 375);
+const manager = new LayerManager();
+manager.switchActiveLayer(LayerType.Preview);
 
-const circuit = new Circuit();
-circuit.start();
+const tooltip = document.querySelector("#tooltip");
+
+document.querySelector("#switchLayer").addEventListener("click", () => {
+  if (manager.activeLayer === LayerType.Draw) {
+    manager.switchActiveLayer(LayerType.Preview);
+    tooltip.textContent = "Current layer: Preview";
+  } else {
+    manager.transferDrawables();
+    manager.switchActiveLayer(LayerType.Draw);
+    tooltip.textContent = "Current layer: Draw"
+  }
+});
