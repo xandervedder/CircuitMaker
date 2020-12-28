@@ -1,5 +1,5 @@
-import { OutputNodeLogic } from "../../logic/node/output-node-logic.js";
-import { BaseNode } from "./base-node.js";
+import { OutputNodeLogic } from "../../logic/node/output-node-logic";
+import { BaseNode } from "./base-node";
 
 export class OutputNode extends BaseNode {
   constructor(x: number, y: number, radius: number) {

@@ -1,9 +1,8 @@
-import { Cable } from "../gfx/cable/cable.js";
-import { BaseNode } from "../gfx/node/base-node.js";
-import { Layer } from "../layer/layer.js";
-import { LayerType } from "../layer/layer-manager.js";
-import { Position } from "../type/types.js";
-import { Handler } from "./handler.js";
+import { Cable } from "../gfx/cable/cable";
+import { BaseNode } from "../gfx/node/base-node";
+import { LayerType } from "../layer/layer-manager";
+import { Position } from "../type/types";
+import { Handler } from "./handler";
 
 const RIGHT_CLICK = 2;
 

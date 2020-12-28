@@ -1,8 +1,7 @@
-import { CableHandler } from "../handler/cable-handler.js";
-import { Handler } from "../handler/handler.js";
-import { Position } from "../type/types.js";
-import { Layer } from "./layer.js";
-import { LayerManager } from "./layer-manager.js";
+import { CableHandler } from "../handler/cable-handler";
+import { Handler } from "../handler/handler";
+import { Layer } from "./layer";
+import { LayerManager } from "./layer-manager";
 
 const PREVIEW_LAYER_ID = "#previewLayer";
 

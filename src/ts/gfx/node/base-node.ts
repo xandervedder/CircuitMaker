@@ -1,6 +1,6 @@
-import { Drawable } from "../../gfx/drawable.js";
-import { BaseNodeLogic } from "../../logic/node/base-node-logic.js";
-import { Position } from "../../type/types.js";
+import { Drawable } from "../../gfx/drawable";
+import { BaseNodeLogic } from "../../logic/node/base-node-logic";
+import { Position } from "../../type/types";
 
 const color = {
   on: "#ff0",

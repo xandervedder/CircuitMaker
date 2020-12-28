@@ -1,4 +1,4 @@
-import { CableLogic } from "../cable/cable-logic.js";
+import { CableLogic } from "../cable/cable-logic";
 
 export interface Listener {
   onSend?: () => void;

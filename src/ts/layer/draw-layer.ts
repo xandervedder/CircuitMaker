@@ -1,9 +1,8 @@
-import { Drawable } from "../gfx/drawable.js";
-import { Nand } from "../gfx/gate/nand.js";
-import { InputNode } from "../gfx/node/input-node.js";
-import { OutputNode } from "../gfx/node/output-node.js";
-import { Layer } from "./layer.js";
-import { LayerManager } from "./layer-manager.js";
+import { Nand } from "../gfx/gate/nand";
+import { InputNode } from "../gfx/node/input-node";
+import { OutputNode } from "../gfx/node/output-node";
+import { Layer } from "./layer";
+import { LayerManager } from "./layer-manager";
 
 const DRAW_LAYER_ID = "#drawLayer";
 

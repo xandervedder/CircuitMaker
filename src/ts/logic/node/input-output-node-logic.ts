@@ -1,4 +1,4 @@
-import { BaseNodeLogic } from "./base-node-logic.js";
+import { BaseNodeLogic } from "./base-node-logic";
 
 export class InputOutputNodeLogic extends BaseNodeLogic {
   public send(): void {

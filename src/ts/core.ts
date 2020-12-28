@@ -1,4 +1,4 @@
-import { LayerType, LayerManager } from "./layer/layer-manager.js";
+import { LayerType, LayerManager } from "./layer/layer-manager";
 
 const manager = new LayerManager();
 manager.switchActiveLayer(LayerType.Preview);

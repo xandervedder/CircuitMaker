@@ -1,7 +1,7 @@
-import { Drawable } from "../drawable.js";
-import { InputOutputNode } from "../node/input-output-node.js";
-import { NandLogic } from "../../logic/gate/nand-logic.js";
-import { Position } from "../../type/types.js";
+import { Drawable } from "../drawable";
+import { InputOutputNode } from "../node/input-output-node";
+import { NandLogic } from "../../logic/gate/nand-logic";
+import { Position } from "../../type/types";
 
 export class Nand extends Drawable {
   private _height: number;

@@ -1,4 +1,4 @@
-import { Position } from "../type/types.js";
+import { Position } from "../type/types";
 
 export abstract class Drawable {
   public abstract draw(ctx: CanvasRenderingContext2D): void;

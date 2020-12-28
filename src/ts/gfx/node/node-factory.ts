@@ -1,7 +1,7 @@
-import { BaseNode } from "./base-node.js";
-import { InputNode } from "./input-node.js";
-import { InputOutputNode } from "./input-output-node.js";
-import { OutputNode } from "./output-node.js";
+import { BaseNode } from "./base-node";
+import { InputNode } from "./input-node";
+import { InputOutputNode } from "./input-output-node";
+import { OutputNode } from "./output-node";
 
 export enum NodeType {
   Input,

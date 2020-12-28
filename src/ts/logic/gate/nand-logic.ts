@@ -1,4 +1,4 @@
-import { InputOutputNodeLogic } from "../node/input-output-node-logic.js";
+import { InputOutputNodeLogic } from "../node/input-output-node-logic";
 
 export class NandLogic {
   constructor(

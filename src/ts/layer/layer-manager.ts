@@ -1,7 +1,7 @@
-import { Drawable } from "../gfx/drawable.js";
-import { DrawLayer } from "./draw-layer.js";
-import { Layer } from "./layer.js";
-import { PreviewLayer } from "./preview-layer.js";
+import { Drawable } from "../gfx/drawable";
+import { DrawLayer } from "./draw-layer";
+import { Layer } from "./layer";
+import { PreviewLayer } from "./preview-layer";
 
 export enum LayerType {
   Draw,

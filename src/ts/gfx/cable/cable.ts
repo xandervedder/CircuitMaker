@@ -1,8 +1,8 @@
-import { CableLogic } from "../../logic/cable/cable-logic.js";
-import { Position } from "../../type/types.js";
-import { Drawable } from "../drawable.js";
-import { BaseNode } from "../node/base-node.js";
-import { circle, line } from "../util/draw.js";
+import { CableLogic } from "../../logic/cable/cable-logic";
+import { Position } from "../../type/types";
+import { Drawable } from "../drawable";
+import { BaseNode } from "../node/base-node";
+import { circle, line } from "../util/draw";
 
 export class Cable extends Drawable {
   private _cableLogic: CableLogic;

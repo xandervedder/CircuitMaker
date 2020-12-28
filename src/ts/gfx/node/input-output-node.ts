@@ -1,5 +1,5 @@
-import { InputOutputNodeLogic } from "../../logic/node/input-output-node-logic.js";
-import { BaseNode } from "./base-node.js";
+import { InputOutputNodeLogic } from "../../logic/node/input-output-node-logic";
+import { BaseNode } from "./base-node";
 
 export class InputOutputNode extends BaseNode {
   constructor(x: number, y: number, radius: number) {
