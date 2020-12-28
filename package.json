@@ -1,0 +1,24 @@
+{
+  "name": "circuitmaker",
+  "version": "0.0.0",
+  "description": "Playground to simulate circuits in",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "snowpack dev",
+    "build": "snowpack build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xandervedder/CircuitMaker.git"
+  },
+  "author": "Xander Vedder",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xandervedder/CircuitMaker/issues"
+  },
+  "homepage": "https://github.com/xandervedder/CircuitMaker#readme",
+  "dependencies": {
+    "snowpack": "^2.18.5"
+  }
+}
