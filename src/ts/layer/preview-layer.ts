@@ -1,4 +1,5 @@
 import { CableHandler } from "../handler/cable-handler";
+import { DrawablePlacer } from "../handler/drawable-placer";
 import { Handler } from "../handler/handler";
 import { Layer } from "./layer";
 import { LayerManager } from "./layer-manager";
@@ -11,7 +12,7 @@ export class PreviewLayer extends Layer {
   constructor(manager: LayerManager) {
     super(document.querySelector(PREVIEW_LAYER_ID), manager);
 
-    this._handler = new CableHandler(this);
+    this._handler = new DrawablePlacer(this); 
     this._addEvents();
   }
 
@@ -24,6 +25,14 @@ export class PreviewLayer extends Layer {
       event.preventDefault();
       this._handler.onMouseButtonRight(event);
     }
+
+    document.querySelector("#cable").addEventListener("click", () => {
+      this._handler = new CableHandler(this);
+    });
+
+    document.querySelector("#nand").addEventListener("click", () => {
+      this._handler = new DrawablePlacer(this);
+    })
   }
 
   public enable() {

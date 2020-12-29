@@ -57,10 +57,12 @@ export class LayerManager {
       case LayerType.Draw: {
         this._previewLayer.addDrawables(this._drawLayer.drawables);
         this._drawLayer.clearDrawables();
+        this._previewLayer.draw();
       } break;
       case LayerType.Preview: {
         this._drawLayer.addDrawables(this._previewLayer.drawables);
         this._previewLayer.clearDrawables();
+        this._drawLayer.draw();
       } break;
     }
   }

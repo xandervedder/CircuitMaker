@@ -1,6 +1,3 @@
-import { Nand } from "../gfx/gate/nand";
-import { InputNode } from "../gfx/node/input-node";
-import { OutputNode } from "../gfx/node/output-node";
 import { Layer } from "./layer";
 import { LayerManager } from "./layer-manager";
 
@@ -9,11 +6,6 @@ const DRAW_LAYER_ID = "#drawLayer";
 export class DrawLayer extends Layer {
   constructor(manager: LayerManager) {
     super(document.querySelector(DRAW_LAYER_ID), manager);
-    
-    this._drawables.push(new OutputNode(250, 475, 25));
-    this._drawables.push(new Nand(500, 350));
-    this._drawables.push(new InputNode(1000, 475, 25));
-    this._drawables.push(new InputNode(1000, 275, 25));
 
     this._addEvents();
   }
