@@ -9,28 +9,23 @@ const color = {
 
 export abstract class BaseNode extends Drawable {
   constructor(
-    protected _x: number,
-    protected _y:  number,
+    x: number,
+    y:  number,
     protected _radius: number,
     protected _nodeLogic: BaseNodeLogic,
   ) {
-    super();
+    super(x, y);
   }
 
   public get logic(): BaseNodeLogic {
     return this._nodeLogic;
   }
 
-  public get position(): Position {
+  public middlePoint(event: MouseEvent): Position {
     return {
-      x: this._x,
-      y: this._y,
+      x: event.offsetX,
+      y: event.offsetY,
     };
-  }
-
-  public set position(position: Position) {
-    this._x = position.x;
-    this._y = position.y;
   }
 
   public draw(ctx: CanvasRenderingContext2D): void {

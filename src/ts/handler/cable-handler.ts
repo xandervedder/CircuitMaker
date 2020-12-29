@@ -1,15 +1,11 @@
 import { Cable } from "../gfx/cable/cable";
 import { BaseNode } from "../gfx/node/base-node";
+import { getPosition } from "../gfx/util/position";
 import { LayerType } from "../layer/layer-manager";
 import { Position } from "../type/types";
 import { Handler } from "./handler";
 
 const RIGHT_CLICK = 2;
-
-const getPosition = (event: MouseEvent) => ({
-  x: event.offsetX,
-  y: event.offsetY,
-});
 
 export class CableHandler extends Handler {
   private _currentCable: Cable = null;

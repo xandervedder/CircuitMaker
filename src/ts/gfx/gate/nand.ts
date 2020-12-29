@@ -12,8 +12,8 @@ export class Nand extends Drawable {
   private _leftNode2: InputOutputNode;
   private _rightNode: InputOutputNode;
 
-  constructor(private _x: number, private _y: number) {
-    super();
+  constructor(x: number, y: number) {
+    super(x ,y);
 
     this._height = 250;
     this._width = 250;
@@ -31,10 +31,25 @@ export class Nand extends Drawable {
     nandLogic.listen();
   }
 
+  public middlePoint(event: MouseEvent): Position {
+    return {
+      x: event.offsetX - this._width / 2,
+      y: event.offsetY - this._height / 2,
+    };
+  }
+
+  public set position(position: Position) {
+    this._x = position.x;
+    this._y = position.y;
+
+    this._leftNode1.position = { x: position.x, y: position.y + this._qSize };
+    this._leftNode2.position = { x: position.x, y: position.y + this._qSize * 3 };
+    this._rightNode.position = { x: position.x + this._width, y: position.y + this._qSize * 2 };
+  }
+
   public draw(ctx: CanvasRenderingContext2D): void {
     ctx.fillStyle = "#0f0";
-    ctx.rect(this._x, this._y, this._width, this._height);
-    ctx.fill();
+    ctx.fillRect(this._x, this._y, this._width, this._height);
 
     this._leftNode1.draw(ctx);
     this._leftNode2.draw(ctx);

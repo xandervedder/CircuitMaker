@@ -12,7 +12,7 @@ export class Cable extends Drawable {
   private _splitPoints: Position[] = [];
 
   constructor(private _beginPoint: Position, private _endPoint: Position) {
-    super();
+    super(0, 0);
   }
 
   public get beginPoint(): Position {
@@ -58,6 +58,13 @@ export class Cable extends Drawable {
 
   public done() {
     this._activeSplitPoint = null;
+  }
+
+  public middlePoint(): Position {
+    return {
+      x: 0,
+      y: 0,
+    };
   }
 
   public draw(ctx: CanvasRenderingContext2D): void {
