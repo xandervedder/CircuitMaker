@@ -15,3 +15,5 @@ document.querySelector("#switchLayer").addEventListener("click", () => {
     tooltip.textContent = "Current layer: Draw"
   }
 });
+
+document.querySelector("#cable").addEventListener("click", () => manager.transferDrawables())
