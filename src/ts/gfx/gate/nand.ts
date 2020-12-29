@@ -15,17 +15,17 @@ export class Nand extends Drawable {
   constructor(x: number, y: number) {
     super(x ,y);
 
-    this._height = 250;
-    this._width = 250;
+    this._height = 150;
+    this._width = 150;
     this._qSize = this._height / 4;
 
     this._setUpNodes();
   }
 
   private _setUpNodes(): void {
-    this._leftNode1 = new InputOutputNode(this._x, this._y + this._qSize, 20);
-    this._leftNode2 = new InputOutputNode(this._x, this._y + this._qSize * 3, 20);
-    this._rightNode = new InputOutputNode(this._x + this._width, this._y + this._qSize * 2, 20);
+    this._leftNode1 = new InputOutputNode(this._x, this._y + this._qSize, 10);
+    this._leftNode2 = new InputOutputNode(this._x, this._y + this._qSize * 3, 10);
+    this._rightNode = new InputOutputNode(this._x + this._width, this._y + this._qSize * 2, 10);
     
     const nandLogic = new NandLogic(this._leftNode1.logic, this._leftNode2.logic, this._rightNode.logic);
     nandLogic.listen();
