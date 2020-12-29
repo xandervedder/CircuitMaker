@@ -13,9 +13,9 @@ export class NandLogic {
   }
 
   public calculateOutput(): void {
-    if (!this._leftNode1.signal && !this._leftNode2.signal)
-      this._rightNode.recieve(true);
-    else
+    if (this._leftNode1.signal && this._leftNode2.signal)
       this._rightNode.recieve(false);
+    else
+      this._rightNode.recieve(true);
   }
 }
