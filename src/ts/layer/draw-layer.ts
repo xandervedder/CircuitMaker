@@ -1,3 +1,6 @@
+import { InputNode } from "../gfx/node/input-node";
+import { OutputNode } from "../gfx/node/output-node";
+import { line } from "../gfx/util/draw";
 import { Layer } from "./layer";
 import { LayerManager } from "./layer-manager";
 
@@ -7,7 +10,24 @@ export class DrawLayer extends Layer {
   constructor(manager: LayerManager) {
     super(document.querySelector(DRAW_LAYER_ID), manager);
 
+    this._setUpStartingNodes();
     this._addEvents();
+  }
+
+  private _setUpStartingNodes() {
+    // TODO: this should be configurable
+    const nodeNumber = 4;
+    const inputNodeNumber = nodeNumber / 2;
+
+    for (let i = 0; i < nodeNumber; i++) {
+      const distance = this.height / nodeNumber
+      this.drawables.push(new OutputNode(0 + 35, (distance * i) + distance / 2, 25));
+    }
+
+    for (let i = 0; i < inputNodeNumber; i++) {
+      const distance = this.height / inputNodeNumber
+      this.drawables.push(new InputNode(this.width - 35, (distance * i) + distance / 2, 25));
+    }
   }
 
   private _addEvents() {
