@@ -4,15 +4,16 @@ import { NandLogic } from "../../logic/gate/nand-logic";
 import { Position } from "../../type/types";
 
 export class Nand extends Drawable {
-  private _height: number;
-  private _width: number;
+  protected _color: string = "#0f0"
+  protected _logic: NandLogic;
+
+  protected _leftNode1: InputOutputNode;
+  protected _leftNode2: InputOutputNode;
+  protected _rightNode: InputOutputNode;
+
+  protected _height: number;
+  protected _width: number;
   private _qSize: number;
-
-  private _leftNode1: InputOutputNode;
-  private _leftNode2: InputOutputNode;
-  private _rightNode: InputOutputNode;
-
-  private _nandLogic: NandLogic;
 
   constructor(x: number, y: number) {
     super(x ,y);
@@ -29,8 +30,7 @@ export class Nand extends Drawable {
     this._leftNode2 = new InputOutputNode(this._x, this._y + this._qSize * 3, 10);
     this._rightNode = new InputOutputNode(this._x + this._width, this._y + this._qSize * 2, 10);
     
-    this._nandLogic = new NandLogic(this._leftNode1.logic, this._leftNode2.logic, this._rightNode.logic);
-    this._nandLogic.listen();
+    this._logic = new NandLogic(this._leftNode1.logic, this._leftNode2.logic, this._rightNode.logic);
   }
 
   public middlePoint(event: MouseEvent): Position {
@@ -50,7 +50,7 @@ export class Nand extends Drawable {
   }
 
   public draw(ctx: CanvasRenderingContext2D): void {
-    ctx.fillStyle = "#0f0";
+    ctx.fillStyle = this._color;
     ctx.fillRect(this._x, this._y, this._width, this._height);
 
     this._leftNode1.draw(ctx);

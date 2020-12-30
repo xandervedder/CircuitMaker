@@ -15,9 +15,9 @@ export abstract class Drawable {
     this._y = position.y;
   }
 
-  public abstract middlePoint(event: MouseEvent): Position;
   public abstract draw(ctx: CanvasRenderingContext2D): void;
   public abstract drawableInPoint(position: Position): Drawable;
+  public abstract middlePoint(event: MouseEvent): Position;
   public abstract onClick(event: Position): void;
   public abstract pointInArea(x: number, y: number): boolean;
 }
