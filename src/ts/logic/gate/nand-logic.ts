@@ -1,16 +1,19 @@
 import { InputOutputNodeLogic } from "../node/input-output-node-logic";
+import { GateLogic } from "./gate-logic";
 
-export class NandLogic {
+export class NandLogic implements GateLogic {
   constructor(
-    private _leftNode1: InputOutputNodeLogic, 
-    private _leftNode2: InputOutputNodeLogic,
-    private _rightNode: InputOutputNodeLogic,
+    protected _leftNode1: InputOutputNodeLogic, 
+    protected _leftNode2: InputOutputNodeLogic,
+    protected _rightNode: InputOutputNodeLogic,
   ) {
     this._leftNode1.shouldListen = true;
     this._leftNode2.shouldListen = true;
+
+    this._listen();
   }
 
-  public listen(): void {
+  protected _listen(): void {
     this._leftNode1.listener = { onSend: () => this.calculateOutput() };
     this._leftNode2.listener = { onSend: () => this.calculateOutput() };
   }
