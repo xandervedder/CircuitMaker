@@ -18,7 +18,7 @@ export class CableHandler extends Handler {
     else this._isDragging = false;
 
     if (this._isDragging || this._isSplitMode) {
-      // Here, the endPoints isn't exactly the 'endPoint'. 
+      // Here, the endPoint isn't exactly the 'endPoint'. 
       // It is the next endpoint of the splitted cable.
       this._currentCable.endPoint = getPosition(event);
     }

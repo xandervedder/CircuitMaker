@@ -1,6 +1,5 @@
 import { InputNode } from "../gfx/node/input-node";
 import { OutputNode } from "../gfx/node/output-node";
-import { line } from "../gfx/util/draw";
 import { Layer } from "./layer";
 import { LayerManager } from "./layer-manager";
 

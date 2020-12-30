@@ -12,6 +12,8 @@ export class Nand extends Drawable {
   private _leftNode2: InputOutputNode;
   private _rightNode: InputOutputNode;
 
+  private _nandLogic: NandLogic;
+
   constructor(x: number, y: number) {
     super(x ,y);
 
@@ -27,8 +29,8 @@ export class Nand extends Drawable {
     this._leftNode2 = new InputOutputNode(this._x, this._y + this._qSize * 3, 10);
     this._rightNode = new InputOutputNode(this._x + this._width, this._y + this._qSize * 2, 10);
     
-    const nandLogic = new NandLogic(this._leftNode1.logic, this._leftNode2.logic, this._rightNode.logic);
-    nandLogic.listen();
+    this._nandLogic = new NandLogic(this._leftNode1.logic, this._leftNode2.logic, this._rightNode.logic);
+    this._nandLogic.listen();
   }
 
   public middlePoint(event: MouseEvent): Position {
