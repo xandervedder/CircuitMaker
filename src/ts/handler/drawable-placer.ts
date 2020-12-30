@@ -1,5 +1,9 @@
 import { Drawable } from "../gfx/drawable";
+import { And } from "../gfx/gate/and";
 import { Nand } from "../gfx/gate/nand";
+import { Not } from "../gfx/gate/not";
+import { Or } from "../gfx/gate/or";
+import { Xor } from "../gfx/gate/xor";
 import { InputNode } from "../gfx/node/input-node";
 import { InputOutputNode } from "../gfx/node/input-output-node";
 import { OutputNode } from "../gfx/node/output-node";
@@ -7,34 +11,70 @@ import { Layer } from "../layer/layer";
 import { Handler } from "./handler";
 
 type Args = {
-  nand: [x: number, y: number],
-  node: [x: number, y: number, radius: number]
+  and:  [ x: number, y: number                 ],
+  nand: [ x: number, y: number                 ],
+  node: [ x: number, y: number, radius: number ],
+  not:  [ x: number, y: number                 ],
+  or:   [ x: number, y: number                 ],
+  xor:  [ x: number, y: number                 ],
 };
 
 const defaultArguments: Args = {
-  nand: [-250, -250],
-  node: [-250, -250, 25],
+  and:  [ -250, -250,    ], 
+  nand: [ -250, -250,    ],
+  node: [ -250, -250, 25 ],
+  not:  [ -250, -250,    ],
+  or:   [ -250, -250,    ],
+  xor:  [ -250, -250,    ],
 };
 
 const enum Type {
-  Nand,
+  And,
   InputNode,
   InputOutputNode,
+  Nand,
+  Not,
   OutputNode,
+  Or,
+  Xor,
 };
+
+type SelectorType = {
+  selector: string,
+  type: Type,
+}
 
 const factory = (type: Type): Drawable => {
   switch(type) {
+    case Type.And:
+      return new And(...defaultArguments.and);
     case Type.Nand:
       return new Nand(...defaultArguments.nand);
     case Type.InputNode:
       return new InputNode(...defaultArguments.node);
     case Type.InputOutputNode:
-      return new InputOutputNode(...defaultArguments.node);
+        return new InputOutputNode(...defaultArguments.node);
+    case Type.Not:
+      return new Not(...defaultArguments.not);
     case Type.OutputNode:
-      return new OutputNode(...defaultArguments.node); 
+      return new OutputNode(...defaultArguments.node);
+    case Type.Or:
+      return new Or(...defaultArguments.or); 
+    case Type.Xor:
+      return new Xor(...defaultArguments.xor);
   }
-}
+};
+
+const elements: SelectorType[] = [
+  { selector: "#and",         type: Type.And,            },
+  { selector: "#input",       type: Type.InputNode,      },
+  { selector: "#inputOutput", type: Type.InputOutputNode },
+  { selector: "#nand",        type: Type.Nand            },
+  { selector: "#not",         type: Type.Not             },
+  { selector: "#output",      type: Type.OutputNode      },
+  { selector: "#or",          type: Type.Or              },
+  { selector: "#xor",         type: Type.Xor             },
+];
 
 export class DrawablePlacer extends Handler {
   private _currentDrawable: Drawable;
@@ -47,10 +87,11 @@ export class DrawablePlacer extends Handler {
     this._currentDrawable = factory(this._currentType);
     this._layer.addDrawable(this._currentDrawable);
 
-    document.querySelector("#nand").addEventListener("click", () => this._handleEvent(Type.Nand));
-    document.querySelector("#input").addEventListener("click", () => this._handleEvent(Type.InputNode));
-    document.querySelector("#inputOutput").addEventListener("click", () => this._handleEvent(Type.InputOutputNode));
-    document.querySelector("#output").addEventListener("click", () => this._handleEvent(Type.OutputNode));
+    elements.forEach(element => {
+      document
+        .querySelector(element.selector)
+        .addEventListener("click", () => this._handleEvent(element.type));
+    });
   }
 
   private _handleEvent(type: Type) {
