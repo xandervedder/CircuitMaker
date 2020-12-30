@@ -1,6 +1,6 @@
 import { Cable } from "../gfx/cable/cable";
 import { BaseNode } from "../gfx/node/base-node";
-import { getPosition } from "../gfx/util/position";
+import { p } from "../gfx/util/position";
 import { LayerType } from "../layer/layer-manager";
 import { Position } from "../type/types";
 import { Handler } from "./handler";
@@ -20,7 +20,7 @@ export class CableHandler extends Handler {
     if (this._isDragging || this._isSplitMode) {
       // Here, the endPoint isn't exactly the 'endPoint'. 
       // It is the next endpoint of the splitted cable.
-      this._currentCable.endPoint = getPosition(event);
+      this._currentCable.endPoint = p(event);
     }
   }
 
@@ -33,12 +33,12 @@ export class CableHandler extends Handler {
 
   private _handleMouseDown(event: MouseEvent): void {
     this._isMouseDown = true;
-    this._currentCable = new Cable(getPosition(event), null);
+    this._currentCable = new Cable(p(event), null);
     this._layer.addDrawable(this._currentCable);
   }
 
   private _handleMouseDownSplitMode(event: MouseEvent): void {
-    const node = this._getDrawableFromPoint(getPosition(event));
+    const node = this._getDrawableFromPoint(p(event));
     // When the node isn't null, we allow the user to connect the next node (if any).
     if (node !== null) {
       this._currentCable.endSplitPoint(node.position);
@@ -69,7 +69,7 @@ export class CableHandler extends Handler {
   }
 
   private _correctCablePosition(event: MouseEvent): void {
-    this._currentCable.endPoint = getPosition(event);
+    this._currentCable.endPoint = p(event);
     const beginNode = this._getDrawableFromPoint(this._currentCable.beginPoint);
     const endNode = this._getDrawableFromPoint(this._currentCable.endPoint);
 
@@ -115,7 +115,7 @@ export class CableHandler extends Handler {
     if (this._currentCable === null || this._isSplitMode) return;
 
     this._isSplitMode = true;
-    this._currentCable.split(getPosition(event));
+    this._currentCable.split(p(event));
   }
 
   private _getDrawableFromPoint(position: Position): BaseNode {
