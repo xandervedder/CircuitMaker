@@ -5,7 +5,10 @@ export class NandLogic {
     private _leftNode1: InputOutputNodeLogic, 
     private _leftNode2: InputOutputNodeLogic,
     private _rightNode: InputOutputNodeLogic,
-  ) {}
+  ) {
+    this._leftNode1.shouldListen = true;
+    this._leftNode2.shouldListen = true;
+  }
 
   public listen(): void {
     this._leftNode1.listener = { onSend: () => this.calculateOutput() };
