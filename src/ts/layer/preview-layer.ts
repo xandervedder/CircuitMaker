@@ -1,5 +1,5 @@
 import { CableHandler } from "../handler/cable-handler";
-import { DrawablePlacer } from "../handler/drawable-placer";
+import { DrawablePlacer, elements } from "../handler/drawable-placer";
 import { Handler } from "../handler/handler";
 import { Layer } from "./layer";
 import { LayerManager } from "./layer-manager";
@@ -7,12 +7,18 @@ import { LayerManager } from "./layer-manager";
 const PREVIEW_LAYER_ID = "#previewLayer";
 
 export class PreviewLayer extends Layer {
+  private _cableHandler: Handler;
+  private _drawablePlacer: Handler;
+
   private _handler: Handler;
 
   constructor(manager: LayerManager) {
     super(document.querySelector(PREVIEW_LAYER_ID), manager);
 
-    this._handler = new DrawablePlacer(this); 
+    this._cableHandler = new CableHandler(this);
+    this._drawablePlacer = new DrawablePlacer(this);
+    this._handler = this._drawablePlacer;
+
     this._addEvents();
   }
 
@@ -27,12 +33,14 @@ export class PreviewLayer extends Layer {
     }
 
     document.querySelector("#cable").addEventListener("click", () => {
-      this._handler = new CableHandler(this);
+      this._handler = this._cableHandler;
     });
 
-    document.querySelector("#nand").addEventListener("click", () => {
-      this._handler = new DrawablePlacer(this);
-    })
+    elements.forEach(element => {
+      document.querySelector(element.selector).addEventListener("click", () => {
+        this._handler = this._drawablePlacer;
+      });
+    });
   }
 
   public enable() {

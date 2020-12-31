@@ -65,7 +65,7 @@ const factory = (type: Type): Drawable => {
   }
 };
 
-const elements: SelectorType[] = [
+export const elements: SelectorType[] = [
   { selector: "#and",         type: Type.And,            },
   { selector: "#input",       type: Type.InputNode,      },
   { selector: "#inputOutput", type: Type.InputOutputNode },
