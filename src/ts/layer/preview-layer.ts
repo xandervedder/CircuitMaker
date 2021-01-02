@@ -55,6 +55,7 @@ export class PreviewLayer extends Layer {
     this._container.onmousemove = null;
     this._container.onmousedown = null;
     this._container.onmouseup = null;
+    this._container.oncontextmenu = null;
   }
 
   public start(): void {
