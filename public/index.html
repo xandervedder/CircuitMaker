@@ -3,48 +3,95 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CircuitMaker v0.0</title>
   <link rel="stylesheet" href="/_dist_/css/main.css">
 </head>
 <body>
   <div class="app">
-    <span id="tooltip" class="app__activeCanvasTooltip">Current layer: Preview</span>
-    <div id="container" class="app__canvasContainer">
-      <canvas id="drawLayer" class="app__canvas app__canvas--background"></canvas>
-      <canvas id="previewLayer" class="app__canvas"></canvas>
-    </div>
-    <div class="partPicker">
-      <div class="partPicker__item">
-        <button id="cable" class="partPicker__button">Draw cables</button>
+    <header class="header">
+      <div class="header__projectText">CircuitMaker</div>
+      <div class="header__settings">
+        <img class="header__settingsImage" src="/_dist_/assets/svg/settings.svg">
       </div>
-      <div class="partPicker__item">
-        <button id="and" class="partPicker__button">Draw And</button>
+    </header>
+    <main class="canvas">
+      <div id="container" class="canvas__container canvas__container--background">
+        <canvas id="drawLayer" class="canvas__element"></canvas>
+        <canvas id="previewLayer" class="canvas__element"></canvas>
       </div>
-      <div class="partPicker__item">
-        <button id="nand" class="partPicker__button">Draw Nand</button>
+      <div class="canvas__currentLayerToast">
+        <div id="toast" class="toast">
+          <img class="toast__image" src="/_dist_/assets/svg/layers.svg">
+          <span id="toastText" class="toast__text">Preview</span>
+        </div>
       </div>
-      <div class="partPicker__item">
-        <button id="not" class="partPicker__button">Draw Not</button>
+      <div class="canvas__container canvas__container--blob">
+        <div class="blob">
+          <div class="blob__skewPart"></div>
+          <div class="blob__fillPart"></div>
+          <a class="blob__link" href="https://github.com/xandervedder/CircuitMaker">
+            <img class="blob__image" src="/_dist_/assets/svg/mark-github.svg">
+          </a>
+        </div>
       </div>
-      <div class="partPicker__item">
-        <button id="or" class="partPicker__button">Draw Or</button>
+      <div class="canvas__container">
+        <div id="toolbox" class="toolbox">
+          <div class="toolbox__header">
+            <span class="toolbox__headerText">Tools</span>
+            <button id="toolboxButton" class="toolbox__headerButton">
+              <img class="toolbox__headerButtonImage" src="/_dist_/assets/svg/wrench.svg">
+            </button>
+          </div>
+          <hr class="toolbox__headerLine">
+          <div class="toolbox__container">
+            <div class="toolbox__group">
+              <div class="toolbox__groupTitleContainer">
+                <span class="toolbox__groupTitle">Gates</span>
+                <hr class="toolbox__line">
+              </div>
+              <div id="gates" class="toolbox__groupedButtons">
+                <button id="nand" class="toolbox__button toolbox__button--toggled">NAND</button>
+                <button id="not" class="toolbox__button">NOT</button>
+                <button id="and" class="toolbox__button">AND</button>
+                <button id="or" class="toolbox__button">OR</button>
+                <button id="xor" class="toolbox__button">XOR</button>
+              </div>
+            </div>
+            <div class="toolbox__group">
+              <div class="toolbox__groupTitleContainer">
+                <span class="toolbox__groupTitle">Nodes</span>
+                <hr class="toolbox__line">
+              </div>
+              <div id="nodes" class="toolbox__groupedButtons">
+                <button id="input" class="toolbox__button">Input node</button>
+                <button id="inputOutput" class="toolbox__button">Input output node</button>
+                <button id="output" class="toolbox__button">Output node</button>
+              </div>
+            </div>
+            <div class="toolbox__group">
+              <div class="toolbox__groupTitleContainer">
+                <span class="toolbox__groupTitle">Placement</span>
+                <hr class="toolbox__line">
+              </div>
+              <div id="placement" class="toolbox__groupedButtons">
+                <button id="cable" class="toolbox__button">Cable</button>
+                <button id="eraser" class="toolbox__button">Eraser</button>
+                <button id="move" class="toolbox__button">Move</button>
+              </div>
+            </div>
+            <div class="toolbox__group">
+              <div class="toolbox__groupTitleContainer">
+                <span class="toolbox__groupTitle">Layer</span>
+                <hr class="toolbox__line">
+              </div>
+              <div id="layers" class="toolbox__groupedButtons">
+                <button id="draw" class="toolbox__button">Draw</button>
+                <button id="preview" class="toolbox__button toolbox__button--toggled">Preview</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="partPicker__item">
-        <button id="xor" class="partPicker__button">Draw Xor</button>
-      </div>
-      <div class="partPicker__item">
-        <button id="input" class="partPicker__button">Draw Input node</button>
-      </div>
-      <div class="partPicker__item">
-        <button id="inputOutput" class="partPicker__button">Draw InputOutput node</button>
-      </div>
-      <div class="partPicker__item">
-        <button id="output" class="partPicker__button">Draw Output node</button>
-      </div>
-      <div class="partPicker__item">
-        <button id="switchLayer" class="partPicker__button">Switch Layer</button>
-      </div>
-    </div>
+    </main>
   </div>
   <script type="module" type="javascript" src="/_dist_/ts/core.js"></script>
 </body>
