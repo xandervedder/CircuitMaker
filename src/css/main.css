@@ -1,96 +1,348 @@
+@font-face {
+  font-family: "Aldrich";
+  src: url("../assets/font/Aldrich-Regular.ttf");
+}
+
+/* TODO: Place more variables everywhere... */
+
 :root {
-  --main-color: #5f5f5f;
-  --secondary-color: grey;
-  --tertiary-color: lightgrey;
+  --main-color: #343434;
+  --secondary-color: #464646;
+  --tertiary-color: #5f5f5f;
   --tertiary-color-hovered: white;
   --tertiary-color-selected: #268ed3;
+  --app-font-face: "Aldrich";
+  --app-border-radius: 10px;
+  --app-box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.15);
+  --app-padding: 0 15px 15px;
+  --header-height: 85px;
+  --header-font-size: 2em;
+  --header-font-color: #fff;
+  --header-settings-margin: 0 0 0 auto;
+  --header-settings-size: 35px;
+  --toast-background-color: #d3d3d3;
+  --blob-bottom: -1px;
+  --blob-fill-size: 40px;
+  --blob-image-height: 35px;
+  --blob-size: 65px;
+  --blob-skew: skew(-25deg);
+  --toolbox-button-color: var(--tertiary-color);
+  --toolbox-button-color-hover: #727272;
+  --toolbox-group-font-size: 1.25em;
+  --toolbox-header-font-size: 1.5em;
+  --toolbox-text-color: #fff;
 }
 
 html, body {
+  display: flex;
+  flex-direction: column;
   height: 100%;
   width: 100%;
   margin: 0;
   background-color: var(--main-color);
+  font-size: 100%;
 }
 
 .app {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: calc(100% - 25px);
-  padding-top: 25px;
+  height: 100%;
+  padding: var(--app-padding);
+  transition: 0.3s;
 }
 
-.app__canvasContainer {
+.header {
+  display: flex;
+  align-items: center;
+  height: var(--header-height);
+}
+
+.header__projectText {
+  color: var(--header-font-color);
+  font-family: var(--app-font-face);
+  font-size: var(--header-font-size);
+}
+
+.header__settings {
+  height: var(--header-settings-size);
+  width: var(--header-settings-size);
+  margin: var(--header-settings-margin);
+  cursor: pointer;
+  filter: invert(1);
+  transition: 0.3s;
+}
+
+.header__settings:hover {
+  transform: rotate(65deg);
+}
+
+.header__settingsImage {
+  height: 100%;
+  width: 100%;
+}
+
+.canvas {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border-radius: var(--app-border-radius);
+}
+
+.canvas__currentLayerToast {
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100%;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  height: 45px;
+  min-width: 150px;
+  padding: 5px 15px;
+  background-color: var(--toast-background-color);
+  border-radius: var(--app-border-radius);
+  box-shadow: var(--app-box-shadow);
+  opacity: 0;
+  animation: 0.3s fadeIn forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.toast--hide {
+  animation: 0.3s fadeOut forwards;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+.toast__image {
+  height: 35px;
+  width: auto;
+}
+
+
+.toast__text {
+  margin: 0 0 0 15px;
+  font-size: 1.15em;
+  font-family: var(--app-font-face);
+}
+
+.canvas__container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.canvas__container--background {
+  background-color: var(--secondary-color);
+}
+
+.canvas__container--blob {
+  display: flex;
+}
+
+.canvas__element {
+  position: absolute;
+  z-index: 1;
+}
+
+.blob {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: var(--blob-size);
+  width: var(--blob-size);
+  margin: auto 0 0 auto;
+  z-index: 1;
+}
+
+.blob__skewPart {
+  position: absolute;
+  height: 60px;
+  width: 65px;
+  bottom: var(--blob-bottom);
+  border-radius: 20% 0 0 0;
+  transform: var(--blob-skew);
+  background-color: var(--main-color);
+}
+
+.blob__fillPart {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: var(--blob-fill-size);
+  width: var(--blob-fill-size);
+  background-color: var(--main-color);
+}
+
+.blob__link {
+  cursor: pointer;
+}
+
+.blob__image {
+  height: var(--blob-image-height);
+  width: auto;
+  margin: 15px 0 0 10px;
+  filter: invert(1);
+}
+
+.toolbox {
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: calc(100% - 300px);
-  width: calc(100% - 50px);
-}
-
-.app__activeCanvasTooltip {
-  position: absolute;
-  z-index: 5;
-}
-
-.app__canvas {
-  position: absolute;
-  border-radius: 5px;
-}
-
-.app__canvas--background {
-  background-color: var(--secondary-color);
-}
-
-.partPicker {
-  display: flex;
-  flex-direction: row;
-  height: 250px;
-  width: calc(100% - 50px);
-  margin: 25px 25px 0 25px;
-  background-color: #3b3b3b;
-  border-radius: 5px;
-}
-
-.partPicker__item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 100%;
-  flex-grow: 1;
+  width: 250px;
+  background-color: var(--tertiary-color);
+  border-radius: var(--app-border-radius);
+  transform: translateX(-250px);
+  transition: 0.3s;
+  z-index: 1;
 }
 
-.partPicker__button {
-  padding: 50px;
-  font-size: 18px;
-  font-weight: bold;
-  border: 5px solid var(--tertiary-color);
-  border-radius: 5px;
+.toolbox--open {
+  transform: translateX(0);
+  box-shadow: var(--app-box-shadow);
+}
+
+.toolbox--open .toolbox__headerButton {
+  transform: translateX(0);
+  border-radius: 0;
+  border-top-right-radius: var(--app-border-radius);
+}
+
+.toolbox--open .toolbox__headerButtonImage {
+  transform: rotate(270deg);
+}
+
+.toolbox--open .toolbox__headerButton:hover .toolbox__headerButtonImage {
+  transform: rotate(240deg);
+}
+
+.toolbox__header {
+  display: flex;
+  align-items: center;
+  padding: 0 0 0 10px;
+  height: 50px;
+  border-top-right-radius: var(--app-border-radius);
+}
+
+.toolbox__headerText {
+  color: var(--toolbox-text-color);
+  font-size: var(--toolbox-header-font-size);
+  font-family: var(--app-font-face);
+}
+
+.toolbox__headerButton {
+  height: 50px;
+  width: 75px;
+  margin: 0 0 0 auto;
+  padding: 0;
+  border: none;
   cursor: pointer;
-  transition: background-color 0.3s, border-color 0.3s;
-  background-color: var(--tertiary-color)
+  background-color: var(--toolbox-button-color);
+  border-radius: 0;
+  border-bottom-right-radius: var(--app-border-radius);
+  transform: translateX(75px);
+  transition: 0.3s;
 }
 
-.partPicker__button:hover {
-  background-color: var(--tertiary-color-hovered);
-  border-color: var(--tertiary-color-hovered);
+.toolbox__headerButton:hover .toolbox__headerButtonImage {
+  transform: rotate(75deg);
 }
 
-.partPicker__button:disabled {
-  background-color: var(--secondary-color);
-  border-color: var(--secondary-color);
-  cursor: not-allowed;
-  transition: none;
+.toolbox__headerButtonImage {
+  height: 25px;
+  width: auto;
+  filter: invert(1);
+  transform: rotate(45deg);
+  transition: 0.3s;
 }
 
-.partPicker__button--selected {
-  border: 5px solid var(--tertiary-color-selected);
+.toolbox__headerLine {
+  height: 4px;
+  border: none;
+  margin: 5px 10px;
+  background-color: var(--main-color);
+  border-radius: var(--app-border-radius);
 }
 
-.partPicker__button--selected:hover {
-  border-color: var(--tertiary-color-selected);
+.toolbox__container {
+  height: 100%;
+  padding: 10px;
+}
+
+.toolbox__group {
+  margin: 0 0 25px 0;
+  padding: 10px;
+  background-color: grey;
+  border-radius: var(--app-border-radius);
+}
+
+.toolbox__groupTitleContainer {
+  display: inline-block;
+}
+
+.toolbox__groupTitle {
+  font-family: var(--app-font-face);
+  font-size: var(--toolbox-group-font-size);
+  color: var(--toolbox-text-color);
+}
+
+.toolbox__line {
+  height: 3px;
+  margin: 5px 0 10px 0;
+  background-color: var(--main-color);
+  border: none;
+  border-radius: var(--app-border-radius);
+}
+
+.toolbox__groupedButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.toolbox__button {
+  flex-grow: 1;
+  padding: 5px 10px;
+  background-color: white;
+  border: none;
+  border-radius: calc(var(--app-border-radius) / 2);
+  font-family: var(--app-font-face);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.toolbox__button--toggled {
+  background-color: var(--main-color);
+  color: var(--toolbox-text-color);
+}
+
+/* 720p monitor */
+@media screen and (min-width: 80em) {
+}
+
+/* 1080p monitor */
+@media screen and (min-width: 120em) {
+  :root {
+    --app-padding: 0 25px 25px;
+  }
+}
+
+/* 1440p monitor */
+@media screen and (min-width: 160em) {
+  :root {
+    --app-padding: 0 50px 25px;
+  }
 }
