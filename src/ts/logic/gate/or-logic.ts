@@ -1,4 +1,3 @@
-import { GateLogic } from "./gate-logic";
 import { NandLogic } from "./nand-logic";
 
 export class OrLogic extends NandLogic {
