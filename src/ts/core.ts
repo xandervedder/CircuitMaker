@@ -1,7 +1,7 @@
 import { LayerType, LayerManager } from "./layer/layer-manager";
 import { $, all } from "./ui/dom";
 
-const version = "v0.0";
+const version = "v0.1";
 document.title = `CircuitMaker - ${version}`;
 
 const manager = new LayerManager();
