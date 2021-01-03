@@ -16,7 +16,6 @@ export class LayerManager {
     this._drawLayer.disable();
     this._previewLayer.enable();
 
-    //! NOTE: this should only be executed once
     this._drawLayer.start();
     this._previewLayer.start()
   }
