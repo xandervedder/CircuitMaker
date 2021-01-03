@@ -24,12 +24,14 @@ export class PreviewLayer extends Layer {
 
   private _addEvents() {
     this._container.onmousemove = event => this._handler.onMouseMove(event);
-    this._container.onmousedown = event => this._handler.onMouseDown(event);
+    this._container.onmousedown = event => {
+      if (event.button === 2) this._handler.onMouseButtonRight(event);
+      this._handler.onMouseDown(event);
+    }
     this._container.onmouseup = event => this._handler.onMouseUp(event);
     this._container.oncontextmenu = event => {
       // We don't want to show the contextmenu.
       event.preventDefault();
-      this._handler.onMouseButtonRight(event);
     }
 
     document.querySelector("#cable").addEventListener("click", () => {
