@@ -8,17 +8,12 @@
     "start": "snowpack dev",
     "build": "snowpack build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/xandervedder/CircuitMaker.git"
-  },
   "author": "Xander Vedder",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/xandervedder/CircuitMaker/issues"
-  },
-  "homepage": "https://github.com/xandervedder/CircuitMaker#readme",
   "dependencies": {
+    "@snowpack/plugin-optimize": "^0.2.10",
+    "@snowpack/plugin-webpack": "^2.2.0",
+    "express": "^4.17.1",
     "snowpack": "^2.18.5"
   }
 }
