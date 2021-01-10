@@ -24,6 +24,10 @@ export class LayerManager {
     return this._drawLayer.enabled ? LayerType.Draw : LayerType.Preview;
   }
 
+  public get allDrawables() {
+    return [...this._drawLayer.drawables, ...this._previewLayer.drawables];
+  }
+
   public getDrawablesByLayer(layer: LayerType): Drawable[] {
     if (layer === LayerType.Draw)
       return this._drawLayer.drawables;

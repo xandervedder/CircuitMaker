@@ -126,7 +126,7 @@ export class CableHandler extends Handler {
   }
 
   private _getDrawableFromPoint(position: Position): BaseNode {
-    for (let drawable of this._layer.manager.getDrawablesByLayer(LayerType.Draw)) {
+    for (let drawable of this._layer.manager.allDrawables) {
       if (drawable.pointInArea(position.x, position.y)) {
         return <BaseNode>drawable.drawableInPoint(position);
       }
