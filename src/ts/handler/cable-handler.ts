@@ -97,6 +97,13 @@ export class CableHandler extends Handler {
     // We don't do it for the endPoints, since it isn't considered an endPoint anymore.
     // We consider it as an intermediary point instead.
     const beginNode = this._getDrawableFromPoint(this._currentCable.beginPoint);
+
+    // If the user didn't select a beginNode, terminate.
+    if (beginNode === null) {
+      this._layer.removeLastDrawable();
+      return;
+    }
+
     this._currentCable.beginPoint = beginNode.position;
 
     if (this._currentCable.splitPoints.length === 0) {
