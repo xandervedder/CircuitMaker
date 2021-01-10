@@ -24,6 +24,10 @@ tools.forEach(tool => {
   });
 })
 
+document.querySelector("#clear").addEventListener("click", () => {
+  manager.clearDrawables();
+});
+
 const layerTools = all("#layers .toolbox__button");
 layerTools.forEach(tool => {
   tool.addEventListener("click", () => {
@@ -41,7 +45,7 @@ layerTools.forEach(tool => {
 
     showToast();
   });
-})
+});
 
 function showToast() {
   toastElement.classList.remove("toast--hide");

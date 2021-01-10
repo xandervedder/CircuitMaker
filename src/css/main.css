@@ -324,6 +324,11 @@ html, body {
   transition: 0.3s;
 }
 
+.toolbox__button:active {
+  transform: scale(0.975);
+}
+
+.toolbox__button:hover,
 .toolbox__button--toggled {
   background-color: var(--main-color);
   color: var(--toolbox-text-color);

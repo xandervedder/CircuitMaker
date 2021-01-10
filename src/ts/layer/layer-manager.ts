@@ -20,11 +20,11 @@ export class LayerManager {
     this._previewLayer.start()
   }
 
-  public get activeLayer() {
+  public get activeLayer(): LayerType {
     return this._drawLayer.enabled ? LayerType.Draw : LayerType.Preview;
   }
 
-  public get allDrawables() {
+  public get allDrawables(): Drawable[] {
     return [...this._drawLayer.drawables, ...this._previewLayer.drawables];
   }
 
@@ -49,7 +49,7 @@ export class LayerManager {
     this._restartDrawing();
   }
 
-  private _restartDrawing() {
+  private _restartDrawing(): void {
     // Kickstart drawing of both of these layers again
     this._drawLayer.draw();
     this._previewLayer.draw();
@@ -69,4 +69,15 @@ export class LayerManager {
       } break;
     }
   }
+
+  public clearDrawables(layer: LayerType = this.activeLayer): void {
+    switch(layer) {
+      case LayerType.Draw: {
+        this._drawLayer.clearDrawables();
+      } break;
+      case LayerType.Preview: {
+        this._previewLayer.clearDrawables();
+      } break;
+    }
+  } 
 }
